@@ -49,10 +49,36 @@ load(
 )
 apple_support_dependencies()
 
+#========================================= rules_xcodeproj =========================================#
+
+http_archive(
+    name = "rules_xcodeproj",
+    integrity = "sha256-I3EVPca7ANRry6ozx41PVIikPUc3TUlYe408gKIuuRQ=",
+    url = "https://github.com/MobileNativeFoundation/rules_xcodeproj/releases/download/2.8.1/release.tar.gz",
+)
+
+load(
+    "@rules_xcodeproj//xcodeproj:repositories.bzl",
+    "xcodeproj_rules_dependencies",
+)
+xcodeproj_rules_dependencies()
 
 
 #========================================= bazel_features =========================================#
-# load("@bazel_features//:deps.bzl", "bazel_features_deps")
-# bazel_features_deps()
+load("@bazel_features//:deps.bzl", "bazel_features_deps")
+bazel_features_deps()
 
 
+#========================================= external objective library =========================================#
+
+http_archive(
+    name = "libsignal",
+    urls = ["https://build-artifacts.signal.org/libraries/libsignal-client-ios-build-v0.60.2.tar.gz"],
+    sha256 = "c11d63ecb4a6f1b3f26ef65c1fe7fce83cef365b20b995a0d09d0ccdba75b00b",
+    build_file = "@//:signal_build_library/libsignal.BUILD",
+)
+
+# https://github.com/AshineReal/bazel_demo/blob/main/http_archive/libobjcLibrary.a.zip
+# f7d5b1932576f13440622387621dc27ab7d44370d8139357fd44e0f1b5e603d4
+
+# https://github.com/AshineReal/bazel_demo/blob/386331af0fbe2ba9e389939d4e7ad25ab93fa2b2/http_archive/libobjcLibrary.a.zip

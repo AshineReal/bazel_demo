@@ -17,6 +17,12 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Hello, world!")
+            Button {
+                say()
+            } label: {
+                Text("ssay..")
+            }
+
         }
         .padding()
     }
